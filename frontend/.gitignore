@@ -1,0 +1,41 @@
+# Archivos de registro
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Directorio de dependencias
+/node_modules
+
+# Directorio de caché de Angular
+.angular/
+
+# Archivos temporales y de compilación
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# Reportes de cobertura de pruebas
+/coverage
+
+# Archivos de entorno (si contienen secretos)
+# /src/environments/environment.ts
+# /src/environments/environment.prod.ts
+
+# Archivos de configuración de IDEs
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# Archivos de sistema operativo
+.DS_Store
+Thumbs.db
