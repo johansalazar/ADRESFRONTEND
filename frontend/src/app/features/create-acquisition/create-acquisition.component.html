@@ -1,0 +1,122 @@
+<div class="container mt-4">
+
+  <!-- Encabezado principal -->
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="fw-bold">
+      {{ idToEdit ? 'Editar' : 'Crear' }} Adquisición
+    </h2>
+
+    <a class="btn btn-secondary" routerLink="/list">
+      ← Volver a la Lista
+    </a>
+  </div>
+
+  <!-- Card principal -->
+  <div class="card shadow-sm border-0">
+
+    <div class="card-header bg-primary text-white fw-semibold">
+      {{ idToEdit ? 'Modificar información' : 'Nueva adquisición' }}
+    </div>
+
+    <div class="card-body p-4">
+
+      <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+
+        <div class="row g-3">
+
+          <!-- Unidad -->
+          <div class="col-md-3">
+            <label for="unit" class="form-label fw-semibold">Unidad</label>
+            <input id="unit" class="form-control" formControlName="unit" required />
+            <div *ngIf="form.get('unit')?.invalid && form.get('unit')?.touched"
+                 class="text-danger small">Campo requerido.</div>
+          </div>
+
+          <!-- Tipo -->
+          <div class="col-md-3">
+            <label for="type" class="form-label fw-semibold">Tipo</label>
+            <input id="type" class="form-control" formControlName="type" required />
+            <div *ngIf="form.get('type')?.invalid && form.get('type')?.touched"
+                 class="text-danger small">Campo requerido.</div>
+          </div>
+
+          <!-- Cantidad -->
+          <div class="col-md-2">
+            <label for="quantity" class="form-label fw-semibold">Cantidad</label>
+            <input id="quantity" type="number" min="0" step="1"
+                   class="form-control text-end" formControlName="quantity" required />
+            <div *ngIf="form.get('quantity')?.invalid && form.get('quantity')?.touched"
+                 class="text-danger small">Ingrese una cantidad válida.</div>
+          </div>
+
+          <!-- Valor Unitario -->
+          <div class="col-md-2">
+            <label for="unitValue" class="form-label fw-semibold">Valor Unit.</label>
+            <input id="unitValue" type="number" min="0" step="0.01"
+                   class="form-control text-end" formControlName="unitValue" required />
+            <div *ngIf="form.get('unitValue')?.invalid && form.get('unitValue')?.touched"
+                 class="text-danger small">Ingrese un valor válido.</div>
+          </div>
+
+          <!-- Fecha -->
+          <div class="col-md-2">
+            <label for="acquisitionDate" class="form-label fw-semibold">Fecha</label>
+            <input id="acquisitionDate" type="datetime-local"
+                   class="form-control" formControlName="acquisitionDate" required />
+            <div *ngIf="form.get('acquisitionDate')?.invalid && form.get('acquisitionDate')?.touched"
+                 class="text-danger small">Seleccione una fecha válida.</div>
+          </div>
+
+          <!-- Proveedor -->
+          <div class="col-12">
+            <label for="supplier" class="form-label fw-semibold">Proveedor</label>
+            <input id="supplier" class="form-control" formControlName="supplier" />
+          </div>
+
+          <!-- Documentación -->
+          <div class="col-12">
+            <label for="documentation" class="form-label fw-semibold">Documentación</label>
+            <input id="documentation" class="form-control" formControlName="documentation" />
+          </div>
+
+          <!-- Error al enviar -->
+          <div class="col-12">
+            <div *ngIf="submitError" class="alert alert-danger d-flex align-items-center">
+              <i class="bi bi-exclamation-octagon-fill me-2"></i>
+              {{ submitError }}
+            </div>
+          </div>
+
+          <!-- Botones -->
+          <div class="col-12 d-flex justify-content-end mt-3">
+
+            <a class="btn btn-secondary me-2"
+               routerLink="/list"
+               [class.disabled]="submitting">
+              Cancelar
+            </a>
+
+            <button type="submit"
+                    class="btn btn-primary px-4"
+                    [disabled]="form.invalid || submitting">
+
+              <ng-container *ngIf="!submitting">
+                {{ idToEdit ? 'Guardar Cambios' : 'Crear' }}
+              </ng-container>
+
+              <ng-container *ngIf="submitting">
+                <span class="spinner-border spinner-border-sm me-2"></span>
+                Procesando...
+              </ng-container>
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>

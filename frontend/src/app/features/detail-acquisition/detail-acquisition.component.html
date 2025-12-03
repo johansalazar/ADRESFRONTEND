@@ -1,0 +1,78 @@
+<div class="container mt-4" >
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="fw-bold">Detalle de Adquisición</h2>
+
+    <div>
+      <button class="btn btn-primary me-2" (click)="verHistorial()">
+        Ver Historial
+      </button>
+
+      <button class="btn btn-secondary" (click)="goBack()">
+        ← Volver a la Lista
+      </button>
+    </div>
+  </div>
+
+  <!-- Card Principal -->
+  <div class="card shadow-sm">
+    <div class="card-header bg-primary text-white">
+      Información General
+    </div>
+
+    <div class="card-body p-4">
+
+      <table class="table table-striped">
+        <tbody>
+          <tr>
+            <th>ID</th>
+            <td>{{ acquisitions?.id }}</td>
+          </tr>
+          <tr>
+            <th>Unidad</th>
+            <td>{{ acquisitions?.unit }}</td>
+          </tr>
+          <tr>
+            <th>Tipo</th>
+            <td>{{ acquisitions?.type }}</td>
+          </tr>
+          <tr>
+            <th>Cantidad</th>
+            <td>{{ acquisitions?.quantity }}</td>
+          </tr>
+          <tr>
+            <th>Proveedor</th>
+            <td>{{ acquisitions?.supplier }}</td>
+          </tr>
+          <tr>
+            <th>Fecha</th>
+            <td>{{ acquisitions?.acquisitionDate | date:'yyyy-MM-dd HH:mm' }}</td>
+          </tr>
+          <tr>
+            <th>Valor Unitario</th>
+            <td>{{ acquisitions?.unitValue | currency:'COP ':'symbol':'1.0-0' }}</td>
+          </tr>
+          <tr>
+            <th>Total</th>
+            <td class="fw-bold">
+              {{ acquisitions?.totalValue | currency:'COP ':'symbol':'1.0-0' }}
+            </td>
+          </tr>
+          <tr>
+            <th>Documentación</th>
+            <td>{{ acquisitions?.documentation }}</td>
+          </tr>
+          <tr>
+            <th>Activo</th>
+            <td>
+              <span class="badge bg-success" *ngIf="acquisitions?.active">Sí</span>
+              <span class="badge bg-danger" *ngIf="!acquisitions?.active">No</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+</div>

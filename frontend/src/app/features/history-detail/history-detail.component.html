@@ -1,0 +1,52 @@
+<div class="container mt-4">
+
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="fw-bold">Historial de la Adquisición</h2>
+
+    <!-- BOTÓN CORREGIDO: Volver al detalle del ID REAL -->
+    <a [routerLink]="['/detail', acquisitionId]" class="btn btn-primary">
+      ← Volver al Detalle
+    </a>
+  </div>
+
+  <div class="card shadow-sm">
+
+    <div class="card-header bg-primary text-white">
+      Registro de Cambios
+    </div>
+
+    <div class="card-body">
+
+      <table class="table table-hover">
+        <thead class="table-light">
+          <tr>
+            <th>Acción</th>
+            <th>Fecha</th>
+            <th>Usuario</th>
+            <th>Detalle</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let item of history">
+            <td>{{ item.action }}</td>
+            <td>{{ item.timestamp | date:'yyyy-MM-dd HH:mm' }}</td>
+            <td>{{ item.user }}</td>
+
+            <td>
+              <button class="btn btn-outline-primary btn-sm"
+                      (click)="item.show = !item.show">
+                {{ item.show ? 'Ocultar' : 'Ver' }} Payload
+              </button>
+
+              <pre *ngIf="item.show" class="mt-2 bg-light p-2 rounded small">
+{{ item.payload | json }}
+              </pre>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>
